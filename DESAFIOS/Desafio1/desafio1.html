@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhe o Número</title>
+    
+    
+    <link rel="icon" type="image/jpg" href="gallo.jpg">
+    
+    <style>
+       
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0; 
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #007BFF; 
+            font-size: 36px; 
+            margin-top: 20px;
+        }
+
+        p {
+            color: #333; 
+            font-size: 20px; 
+        }
+
+        input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            font-size: 18px; 
+        }
+
+        button {
+            padding: 10px 20px; 
+            font-size: 18px;
+            background-color: #ff6b6b; 
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #ff3d3d; 
+        }
+
+        #message {
+            font-weight: bold;
+            color: #4CAF50; 
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Adivinhe o Número</h1>
+    <p>Informe um número entre 1 e 100:</p>
+    <input type="number" id="guess" min="1" max="100">
+    <button id="submit">Enviar</button>
+    <p id="message"></p>
+
+    <script>
+        
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        document.getElementById('submit').addEventListener('click', () => {
+            const userGuess = parseInt(document.getElementById('guess').value);
+
+            if (userGuess === randomNumber) {
+                document.getElementById('message').textContent = 'ACERTOU MIZERAVI!!!!';
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('guess').setAttribute('disabled', 'disabled');
+                document.getElementById('submit').setAttribute('disabled', 'disabled');
+            } else if (userGuess < randomNumber) {
+                document.getElementById('message').textContent = 'Chute muito baixo';
+                document.getElementById('message').style.color = 'red';
+                attempts++;
+            } else {
+                document.getElementById('message').textContent = 'Chute muito alto';
+                document.getElementById('message').style.color = 'red';
+                attempts++;
+            }
+
+            if (attempts >= 10) {
+                document.getElementById('message').textContent = 'Você atingiu o limite de 10 tentativas. O número correto era ' + randomNumber + '.';
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('guess').setAttribute('disabled', 'disabled');
+                document.getElementById('submit').setAttribute('disabled', 'disabled');
+            }
+        });
+    </script>
+</body>
+</html>

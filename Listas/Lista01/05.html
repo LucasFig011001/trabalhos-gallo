@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05 Esse foi difícil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #4b4b4b;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #061d9e;
+            font-size: 36px;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        input[type="number"] {
+            width: 100px;
+            padding: 5px;
+            font-size: 18px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #eb1919;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #972222;
+        }
+
+        #raizes {
+            font-weight: bold;
+            color: #061d9e;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Equação do 2º Grau</h1>
+    <p>Informe os coeficientes da equação (ax^2 + bx + c = 0):</p>
+    <input type="number" id="coeficienteA" placeholder="a">
+    <input type="number" id="coeficienteB" placeholder="b">
+    <input type="number" id="coeficienteC" placeholder="c">
+    <button id="calcular">Calcular Raízes</button>
+    <p id="raizes"></p>
+
+    <script>
+        document.getElementById('calcular').addEventListener('click', () => {
+            const a = parseFloat(document.getElementById('coeficienteA').value);
+            const b = parseFloat(document.getElementById('coeficienteB').value);
+            const c = parseFloat(document.getElementById('coeficienteC').value);
+
+            const delta = b * b - 4 * a * c;
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                document.getElementById('raizes').textContent = 'Insira coeficientes válidos.';
+            } else if (delta > 0) {
+                const raiz1 = (-b + Math.sqrt(delta)) / (2 * a);
+                const raiz2 = (-b - Math.sqrt(delta)) / (2 * a);
+                document.getElementById('raizes').textContent = `Raízes: x1 = ${raiz1.toFixed(2)}, x2 = ${raiz2.toFixed(2)}`;
+            } else if (delta === 0) {
+                const raiz = -b / (2 * a);
+                document.getElementById('raizes').textContent = `Raiz única: x = ${raiz.toFixed(2)}`;
+            } else {
+                document.getElementById('raizes').textContent = 'A equação não possui raízes reais.';
+            }
+        });
+    </script>
+</body>
+</html>

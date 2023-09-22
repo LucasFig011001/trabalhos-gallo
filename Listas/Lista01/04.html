@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #4b4b4b;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #061d9e;
+            font-size: 36px;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        input[type="number"] {
+            width: 100px;
+            padding: 5px;
+            font-size: 18px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #eb1919;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #972222;
+        }
+
+        #novoSaldo {
+            font-weight: bold;
+            color: #061d9e;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Saldo Bancário</h1>
+    <p>Saldo inicial: R$ 500,00</p>
+    <p>Digite o valor do cheque que entrou:</p>
+    <input type="number" id="valorCheque" step="0.01" placeholder="Valor do cheque">
+    <button id="calcular">Calcular Saldo</button>
+    <p id="novoSaldo"></p>
+
+    <script>
+        document.getElementById('calcular').addEventListener('click', () => {
+            const saldoInicial = 500.00;
+            const valorCheque = parseFloat(document.getElementById('valorCheque').value);
+
+            if (!isNaN(valorCheque)) {
+                const novoSaldo = saldoInicial + valorCheque;
+                document.getElementById('novoSaldo').textContent = `Novo saldo: R$ ${novoSaldo.toFixed(2)}`;
+            } else {
+                document.getElementById('novoSaldo').textContent = 'Insira um valor válido.';
+            }
+        });
+    </script>
+</body>
+</html>

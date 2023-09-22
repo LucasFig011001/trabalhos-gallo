@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Quase um Akinator(Deu erro) </title>
+    <style>
+       
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #007BFF;
+            font-size: 36px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #ff3d3d;
+        }
+
+        #question-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #question-text {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        #result {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #result-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Akinator Animal</h1>
+    <button id="start">Iniciar</button>
+    <div id="question-container">
+        <p id="question-text"></p>
+        <button id="yes">Sim</button>
+        <button id="no">Não</button>
+    </div>
+    <div id="result">
+        <p id="result-text"></p>
+    </div>
+    <script>
+        const questions = [
+            { question: 'O animal é mamífero?', yes: 1, no: 2 },
+            { question: 'O animal tem listras?', yes: 'tigre', no: 'elefante' },
+            { question: 'O animal voa?', yes: 'pássaro', no: 'leão' },
+            { question: 'O animal é um animal de estimação?', yes: 'cachorro', no: 'girafa' },
+            { question: 'O animal vive na água?', yes: 'peixe', no: 'gato' },
+            { question: 'O animal é venenoso?', yes: 'cobra', no: 'coelho' },
+            { question: 'O animal é grande?', yes: 'elefante', no: 'gato' },
+            { question: 'O animal é conhecido por sua rapidez?', yes: 'gato', no: 'tartaruga' },
+        ];
+
+        let currentQuestion = 0;
+        let animal = '';
+
+        const startButton = document.getElementById('start');
+        const questionContainer = document.getElementById('question-container');
+        const questionText = document.getElementById('question-text');
+        const yesButton = document.getElementById('yes');
+        const noButton = document.getElementById('no');
+        const resultContainer = document.getElementById('result');
+        const resultText = document.getElementById('result-text');
+
+        startButton.addEventListener('click', () => {
+            startButton.style.display = 'none';
+            showQuestion();
+        });
+
+        function showQuestion() {
+            if (currentQuestion < questions.length) {
+                const question = questions[currentQuestion];
+                questionText.textContent = question.question;
+                questionContainer.style.display = 'block';
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            questionContainer.style.display = 'none';
+            resultContainer.style.display = 'block';
+            if (animal) {
+                resultText.textContent = `O animal é um ${animal}.`;
+            } else {
+                resultText.textContent = `Não foi possível identificar o animal.`;
+            }
+        }
+
+        yesButton.addEventListener('click', () => {
+            const question = questions[currentQuestion];
+            if (question.yes === 1) {
+                currentQuestion = 1;
+            } else if (question.yes === 2) {
+                currentQuestion = 2;
+            } else {
+                animal = question.yes;
+            }
+            showQuestion();
+        });
+
+        noButton.addEventListener('click', () => {
+            const question = questions[currentQuestion];
+            if (question.no === 1) {
+                currentQuestion = 1;
+            } else if (question.no === 2) {
+                currentQuestion = 2;
+            } else {
+                animal = question.no;
+            }
+            showQuestion();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #4b4b4b;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #061d9e;
+            font-size: 36px;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        #resultado {
+            font-weight: bold;
+            color: #061d9e;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Múltiplos de Três</h1>
+    <p>Aqui estão os múltiplos de três de 1 a 100:</p>
+    <p id="resultado"></p>
+
+    <script>
+        const resultadoElement = document.getElementById('resultado');
+        let multiplosDeTres = '';
+
+        for (let i = 1; i <= 100; i++) {
+            if (i % 3 === 0) {
+                multiplosDeTres += `${i}, `;
+            }
+        }
+
+        // Remova a vírgula extra no final
+        multiplosDeTres = multiplosDeTres.slice(0, -2);
+
+        resultadoElement.textContent = multiplosDeTres;
+    </script>
+</body>
+</html>
